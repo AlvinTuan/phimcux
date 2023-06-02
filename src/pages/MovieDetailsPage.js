@@ -7,7 +7,7 @@ import MovieCard from "../components/movie/MovieCard";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const { data } = useSWR(tmdbAPI.getMovieDetailsPage(movieId), fetcher);
+  const { data, error } = useSWR(tmdbAPI.getMovieDetailsPage(movieId), fetcher);
   if (!data) return null;
   const { backdrop_path, poster_path, title, genres, overview } = data;
   return (
@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
         <div
           className="w-full h-full  bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url(${tmdbAPI.imageOriginal(backdrop_path)})`,
+            backgroundImage: `url(${tmdbAPI.imageW500(backdrop_path)})`,
           }}
         ></div>
       </div>
